@@ -13,6 +13,9 @@ import "bootstrap/dist/css/bootstrap";
 require("stylesheets/application.scss");
 import "@fortawesome/fontawesome-free/js/all";
 
+require("trix")
+require("@rails/actiontext")
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
