@@ -1,6 +1,7 @@
 User.create!(email: "admin@example.com",
              password: "password",
-             password_confirmation: "password")
+             password_confirmation: "password",
+             confirmed_at: Time.zone.now)
 
 30.times do
   Course.create!([{
