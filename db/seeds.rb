@@ -9,7 +9,7 @@ User.create!(email: "admin@example.com",
     description: Faker::TvShows::GameOfThrones.quote,
     user: User.first,
     short_description: Faker::Quote.famous_last_words,
-    language: Faker::ProgrammingLanguage.name,
-    level: 'Beginner',
+    language: Course::LANGUAGES.sample.to_s,
+    level: Course::LEVELS.sample.to_s,
     price: Faker::Number.between(from: 1000, to: 20000)}])
 end

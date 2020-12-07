@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
+  def username
+    email.split(/@/).first
+  end
+
   def to_s
     email
   end
