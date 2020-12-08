@@ -13,6 +13,10 @@ class Course < ApplicationRecord
   validates :title, :short_description, :language, :level, :price, presence: true
   validates :description, presence: true, length: { minimum: 5}
 
+  def to_s
+    title
+  end
+
   def self.languages
     LANGUAGES.map { |language| [language, language] }
   end
