@@ -8,7 +8,7 @@ class Course < ApplicationRecord
   belongs_to :user
   has_rich_text :description
   friendly_id :title, use: :slugged
-  tracked
+  tracked owner: Proc.new{ |controller, model| controller&.current_user }
 
   validates :title, :short_description, :language, :level, :price, presence: true
   validates :description, presence: true, length: { minimum: 5}
