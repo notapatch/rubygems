@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
+  validate :must_have_a_role, on: :update
+ 
   after_create :assign_default_role
 
   def username
@@ -16,6 +18,12 @@ class User < ApplicationRecord
   end
 
   private
+
+  def must_have_a_role
+    unless roles.any?
+      errors.add(:roles, "must have at least one role")
+    end
+  end
 
   def assign_default_role
     if User.count == 1
