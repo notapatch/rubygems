@@ -1,7 +1,9 @@
 class User < ApplicationRecord
+  extend FriendlyId
   rolify
   has_many :courses
 
+  friendly_id :email, use: :slugged
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
