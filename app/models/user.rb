@@ -8,11 +8,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
   validate :must_have_a_role, on: :update
- 
+
   after_create :assign_default_role
 
   def username
     email.split(/@/).first
+  end
+
+  def online?
+    updated_at > 2.minutes.ago
   end
 
   def to_s
