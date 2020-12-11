@@ -6,6 +6,7 @@ class Course < ApplicationRecord
   LEVELS = [:"Beginner", :"Intermediate", :"Advanced"]
 
   belongs_to :user
+  has_many :lessons
   has_rich_text :description
   friendly_id :title, use: :slugged
   tracked owner: Proc.new{ |controller, model| controller&.current_user }
