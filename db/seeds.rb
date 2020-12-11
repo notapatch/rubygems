@@ -1,3 +1,6 @@
+COURSE_NUMBER = 30
+AVG_LESSONS_PER_COURSE = 8
+
 User.create!(email: "admin@example.com",
              password: "password",
              password_confirmation: "password",
@@ -10,7 +13,7 @@ User.create!(email: "admin@example.com",
                confirmed_at: Time.zone.now)
   end
 
-30.times do
+COURSE_NUMBER.times do
   Course.create!([{
     title: Faker::Educator.course_name,
     description: Faker::TvShows::GameOfThrones.quote,
@@ -19,4 +22,12 @@ User.create!(email: "admin@example.com",
     language: Course::LANGUAGES.sample.to_s,
     level: Course::LEVELS.sample.to_s,
     price: Faker::Number.between(from: 1000, to: 20000)}])
+end
+
+(COURSE_NUMBER * AVG_LESSONS_PER_COURSE).times do
+  course = Course.order(Arel.sql('Random()')).first
+  course.lessons.create!([{
+    title: Faker::Educator.subject,
+    content: Faker::TvShows::SiliconValley.quote
+  }])
 end
